@@ -1147,6 +1147,35 @@ public void verifyThatUserCanCheckImpressiveButtonOnRadioButtonPage () throws Ex
 		
 	}
 	
+@Test (priority=480)
+	
+	public void verifyThatClickOnUploadButtonUploadCorrectFile () throws Exception {
+		
+		scrollTo(toolsQaHomePage.getElements());
+		wdwait.until(ExpectedConditions.elementToBeClickable(toolsQaHomePage.getElements()));
+		toolsQaHomePage.clickOnElement();
+		
+		
+		scrollTo(toolsQaElementsPage.getUploadAndDownLoad());
+		wdwait.until(ExpectedConditions.elementToBeClickable(toolsQaElementsPage.getUploadAndDownLoad()));
+		toolsQaElementsPage.clickUploadAndDownload();;
+		
+		scrollTo(toolsQaUploadAndDownload.getChooseFileButton());
+		wdwait.until(ExpectedConditions.elementToBeClickable(toolsQaUploadAndDownload.getChooseFileButton()));
+		Thread.sleep(3000);
+		
+		try {
+			
+			Assert.assertFalse(toolsQaUploadAndDownload.getUploadedFilePath().isDisplayed());
+		} catch (org.openqa.selenium.NoSuchElementException e) {} //ovde proveravam da element koji ce se pojaviti kada upload-ujem fajl nije vidljiv pre nego sto iyvrsim upload 
+		toolsQaUploadAndDownload.getChooseFileButton().sendKeys("C:\\Users\\Jeca\\Downloads\\sampleFile (3).jpeg");
+		Assert.assertTrue(toolsQaUploadAndDownload.getUploadedFilePath().isDisplayed()); //ovde potvrdjujem da je element koji se pojavljuje kada se upload-uje fajl sada, posle iyvrsenog uploadd-a vidljiv
+		//sada hocu da potvdim da je uploadovan pravi fajl
+		String expectFileName= "sampleFile (3).jpeg";
+		Assert.assertTrue(toolsQaUploadAndDownload.isCorrectFileUploaded(expectFileName));//ovde koristim metodu koja vraca true ako tekst koji je izvucen iz elementa koji se pojavljuje kada je izvrsen uplad fajla sadrzi naziv fajla koji sam upladovala
+	    
 	
 	
+	
+}
 }

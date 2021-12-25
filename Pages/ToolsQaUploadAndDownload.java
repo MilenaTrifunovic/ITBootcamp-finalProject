@@ -13,6 +13,8 @@ File dir;
 	
 	WebElement uploadAndDownloadLabel;
 	WebElement downloadButton;
+	WebElement chooseFileButton;
+	WebElement uploadedFilePath;
 
 	public ToolsQaUploadAndDownload(WebDriver driver) {
 		
@@ -26,6 +28,21 @@ File dir;
 	public WebElement getDownloadButton () {
 		
 		return driver.findElement(By.id("downloadButton"));
+	}
+	
+	public WebElement getChooseFileButton () {
+		return driver.findElement(By.id("uploadFile"));
+	}
+	
+	public WebElement getUploadedFilePath () {
+		
+		return driver.findElement(By.id("uploadedFilePath"));
+		
+	}
+	
+	public void clickChooseFileButton () {
+		
+		this.getChooseFileButton().click();
 	}
 	
 	public void clickDownloadButton () {
@@ -57,5 +74,15 @@ File dir;
 	} return n;
 	}
 	
-
+   public String getUploadedFilePathText () {
+	   
+	   return this.getUploadedFilePath().getText();
+   }
+   
+   public boolean isCorrectFileUploaded (String exp) {
+	   
+	   
+	   if (this.getUploadedFilePathText().contains(exp)) {return true;}
+	   else {return false;}
+   }
 }
