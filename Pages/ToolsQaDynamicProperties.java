@@ -11,6 +11,9 @@ public class ToolsQaDynamicProperties {
 WebDriver driver;
 	
 	WebElement DynamicPropertiesLabel;
+	WebElement enableAfter5Sec;
+	WebElement changeColorButton;
+	
 
 	public ToolsQaDynamicProperties(WebDriver driver) {
 		
@@ -21,6 +24,16 @@ WebDriver driver;
 		return driver.findElement(By.className("main-header"));
 	}
 	
+	public WebElement getEnableAfter5Sec () {
+		
+		return driver.findElement(By.id("enableAfter"));
+	}
+	
+	public WebElement getChangeColorButton () {
+		
+		return driver.findElement(By.id("colorChange"));
+	}
+	
 	public String getDynamicPropertiesText () {
 		
 		return this.getDynamicPropertiesLabel().getText();
@@ -29,7 +42,7 @@ WebDriver driver;
 		
 	}
 	
-	
+  
 	
 	
 	

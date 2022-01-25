@@ -1145,7 +1145,7 @@ public void verifyThatUserCanCheckImpressiveButtonOnRadioButtonPage () throws Ex
 		
 		Assert.assertTrue(toolsQaUploadAndDownload.isFileDownloaded(filePath,"sampleFile.jpeg"));
 		
-	}
+	} 
 	
 @Test (priority=480)
 	
@@ -1178,4 +1178,49 @@ public void verifyThatUserCanCheckImpressiveButtonOnRadioButtonPage () throws Ex
 	
 	
 }
+	
+	
+	
+	@Test (priority=490)
+	public void verifyThatWillEnable5SecondButtonIsEnabledAfter5Sec () throws Exception {
+		
+		
+		scrollTo(toolsQaHomePage.getElements());
+		wdwait.until(ExpectedConditions.elementToBeClickable(toolsQaHomePage.getElements()));
+		toolsQaHomePage.clickOnElement();
+		
+		
+		scrollTo(toolsQaElementsPage.getDynamicProperties());
+		wdwait.until(ExpectedConditions.elementToBeClickable(toolsQaElementsPage.getDynamicProperties()));
+		toolsQaElementsPage.clickDynamicProperties();
+		
+		Assert.assertFalse(toolsQaDynamicProperties.getEnableAfter5Sec().isEnabled());
+		Thread.sleep(5000);
+		Assert.assertTrue(toolsQaDynamicProperties.getEnableAfter5Sec().isEnabled());
+		
+		
+	} 
+	
+	
+	@Test (priority=490)
+	public void verifyThatChangeColorButtonChangesColorAfter5Seconds () throws Exception {
+		
+		
+		scrollTo(toolsQaHomePage.getElements());
+		wdwait.until(ExpectedConditions.elementToBeClickable(toolsQaHomePage.getElements()));
+		toolsQaHomePage.clickOnElement();
+		
+		
+		scrollTo(toolsQaElementsPage.getDynamicProperties());
+		wdwait.until(ExpectedConditions.elementToBeClickable(toolsQaElementsPage.getDynamicProperties()));
+		toolsQaElementsPage.clickDynamicProperties();
+		
+		 String color1= toolsQaDynamicProperties.getChangeColorButton().getCssValue("color");
+		Thread.sleep(10000);
+		
+		String color2=toolsQaDynamicProperties.getChangeColorButton().getCssValue("color");
+
+		Assert.assertFalse(color1.equalsIgnoreCase(color2));
+		
+	}
 }
